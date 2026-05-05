@@ -7,11 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL").replace(
-    "postgresql://", "postgresql+asyncpg://"
-)
+DATABASE_URL = os.getenv("DATABASE_URL")\
+    .replace("postgresql://", "postgresql+asyncpg://")\
+    .replace("?sslmode=require", "")
 
-engine = create_async_engine(DATABASE_URL)
+engine = create_async_engine(DATABASE_URL, connect_args={"ssl": "require"})
 AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 class Base(DeclarativeBase):
