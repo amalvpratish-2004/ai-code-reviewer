@@ -14,6 +14,10 @@ async def startup():
 def health():
     return {"status": "ok"}
 
+@app.get("/ping")
+def ping():
+    return {"status": "alive"}
+
 @app.post("/webhook")
 async def webhook(request: Request):
     # Step 1: verify signature

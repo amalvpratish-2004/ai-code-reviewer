@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ai-code-reviewer
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: GITHUB_APP_ID
+        sync: false
+      - key: GITHUB_WEBHOOK_SECRET
+        sync: false
+      - key: GITHUB_PRIVATE_KEY
+        sync: false
+
+crons:
+  - name: keep-alive
+    runtime: python
+    schedule: "*/10 * * * *"
+    buildCommand: pip install requests
+    startCommand: python -c "import requests; requests.get('https://ai-code-reviewer.onrender.com/ping')"

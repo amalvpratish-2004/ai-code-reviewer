@@ -5,7 +5,8 @@ import httpx
 
 def generate_jwt() -> str:
     app_id = os.getenv("GITHUB_APP_ID")
-    private_key = os.getenv("GITHUB_PRIVATE_KEY").replace("\\n", "\n")
+    # Read from env var, replace literal \n with real newlines
+    private_key = os.getenv("GITHUB_PRIVATE_KEY", "").replace("\\n", "\n")
 
     now = int(time.time())
     payload = {
