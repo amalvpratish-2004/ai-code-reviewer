@@ -117,7 +117,7 @@ async def review_pr(diff: str, files: dict) -> list:
 
         try:
             response = client.chat.completions.create(
-                model="llama-3.1-70b-versatile",
+                model="llama-3.3-70b-versatile",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,  # Low temperature = more consistent, less creative
                 max_tokens=1000
