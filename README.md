@@ -1,5 +1,3 @@
-# ai-code-reviewer
-
 # AI Code Reviewer
 
 A GitHub App that automatically reviews pull requests using **Llama 3.3 70B** via Groq. When a PR is opened or updated, the bot fetches the changed files, analyzes them for bugs, security issues, and code quality problems, and posts comments directly on the PR.
